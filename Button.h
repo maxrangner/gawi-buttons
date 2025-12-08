@@ -20,8 +20,8 @@ class Button {
   bool heldFlag;
 public:
   // CONSTRUCTORS
-  Button(uint8_t buttonPin, bool hasPullup = false, unsigned long setDebounce = 50, unsigned long holdTime = 300);
-  Button(bool *input, bool hasPullup = false, unsigned long setDebounce = 50, unsigned long holdTime = 300);
+  Button(uint8_t buttonPin, bool hasPullup, unsigned long setDebounce, unsigned long holdTime);
+  Button(bool *input, bool hasPullup, unsigned long setDebounce, unsigned long holdTime);
   // DEFAULTS
   static constexpr unsigned long DefaultDebounce = 50;
   static constexpr unsigned long DefaultHold = 300;

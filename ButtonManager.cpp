@@ -6,16 +6,14 @@ uint8_t ButtonManager::getNumButtons() const {
   return numButtons;
 }
 
-Button* ButtonManager::addButton(uint8_t pin) {
-  return addButton(pin, Button::DefaultPullup, Button::DefaultDebounce, Button::DefaultHold);
-} 
-Button* ButtonManager::addButton(uint8_t pin, bool hasPullup) {
-  return addButton(pin, hasPullup, Button::DefaultDebounce, Button::DefaultHold);
-}
-Button* ButtonManager::addButton(uint8_t pin, bool hasPullup, uint16_t setDebounce) {
-  return addButton(pin, hasPullup, setDebounce, Button::DefaultHold);
-}
 Button* ButtonManager::addButton(uint8_t pin, bool hasPullup, uint16_t setDebounce, unsigned long holdTime) {
+  m_activeButtons.emplace_back(std::make_unique<Button>(pin, hasPullup, setDebounce, holdTime));
+  Serial.println("Button added.");
+  this->numButtons++;
+  return m_activeButtons.back().get();
+}
+
+Button* ButtonManager::addButton(bool *input, bool hasPullup, uint16_t setDebounce, unsigned long holdTime) {
   m_activeButtons.emplace_back(std::make_unique<Button>(pin, hasPullup, setDebounce, holdTime));
   Serial.println("Button added.");
   this->numButtons++;

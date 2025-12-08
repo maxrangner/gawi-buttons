@@ -10,9 +10,6 @@ class ButtonManager {
 public:
   ButtonManager();
   uint8_t getNumButtons() const;
-  Button* addButton(uint8_t pin);
-  Button* addButton(uint8_t pin, bool hasPullup);
-  Button* addButton(uint8_t pin, bool hasPullup, uint16_t setDebounce);
-  Button* addButton(uint8_t pin, bool hasPullup, uint16_t setDebounce, unsigned long holdTime);
+  Button* addButton(uint8_t pin, bool hasPullup = false, uint16_t setDebounce = 50, unsigned long holdTime = 300);
   void updateAll();
 };
